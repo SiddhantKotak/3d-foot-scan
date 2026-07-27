@@ -1,0 +1,17 @@
+# python
+backend/.venv/
+__pycache__/
+*.pyc
+backend/checkpoints.sqlite
+backend/artifacts/
+out/
+
+# env / secrets
+backend/.env
+
+# node
+frontend/node_modules/
+frontend/dist/
+
+# os
+.DS_Store

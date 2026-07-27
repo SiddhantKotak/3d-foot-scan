@@ -1,0 +1,38 @@
+[project]
+name = "foot-scan-insole-poc"
+version = "0.1.0"
+description = "Foot scan -> manufactured insole PoC (quality gate, geometry, LangGraph, FastAPI)"
+requires-python = ">=3.10"
+dependencies = [
+    # 3D / CV / math
+    "numpy",
+    "trimesh",
+    "rtree",            # ray casting backend for trimesh
+    "pymeshfix",        # robust watertight repair (sole-hole)
+    "shapely",          # cross-section area
+    "scipy",
+    "scikit-learn",     # RANSAC floor plane
+    "opencv-python",
+    "pillow",
+    "pillow-heif",      # HEIC decode
+    "matplotlib",       # headless (Agg) renders
+    # orchestration
+    "langgraph",
+    "langgraph-checkpoint-sqlite",
+    # adapters
+    "anthropic",        # Claude vision
+    "httpx",            # KIRI HTTP client
+    # web
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",
+    "pydantic-settings",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

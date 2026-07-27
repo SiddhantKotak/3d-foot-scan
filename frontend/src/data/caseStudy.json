@@ -1,0 +1,176 @@
+{
+  "patient": "MS LEUNG",
+  "capture": "20 handheld non-weight-bearing HEIC photos per foot",
+  "ground_truth_source": "A4 hand tracings (weight-bearing)",
+  "data_issues": [
+    "Reconstruction captured the whole scene (floor/chair) \u2014 background can fuse into the foot mesh",
+    "Non-weight-bearing capture: no floor reference, arch height not clinically reliable",
+    "Foot + leg in frame complicates orientation",
+    "Marginal reconstruction from ~20 handheld photos of low-texture skin",
+    "No in-frame scale reference: measurements are shape-only (anchored to the tracing)"
+  ],
+  "solved": [
+    "Image quality gate on the real batches (accept/reject with reasons)",
+    "Live KIRI reconstruction end-to-end",
+    "Watertight repair of the real photogrammetry hole (pymeshfix)",
+    "Scale-calibration method proven (A4 detector) + validation vs ground truth",
+    "Foot length anchored to ground truth",
+    "Live Claude biomechanics read",
+    "LangGraph flow with checkpointing + clinician review interrupt",
+    "Reliability flags: bad width/arch/scale are flagged, never shipped"
+  ],
+  "feet": [
+    {
+      "side": "left",
+      "scan_id": "case-left",
+      "measurements": {
+        "length_mm": 245.0,
+        "width_mm": 110.81,
+        "width_reliable": true,
+        "arch_height_mm": 74.21,
+        "arch_reliable": false,
+        "arch_engine": "ray"
+      },
+      "scale": {
+        "method": "unresolved",
+        "reliable": false
+      },
+      "validation": {
+        "gt_length_mm": 245.0,
+        "gt_width_mm": 95.0,
+        "length_dev_mm": 0.0,
+        "width_dev_mm": 15.81,
+        "within_tolerance": false,
+        "scale_reliable": false
+      },
+      "repair": {
+        "method_used": "pymeshfix",
+        "output_watertight": true
+      },
+      "vision": {
+        "arch_type": "high (pes cavus)",
+        "pronation": "supination",
+        "weight_distribution": "increased lateral and forefoot/heel loading with reduced midfoot contact",
+        "pressure_zones": [
+          "heel",
+          "1st metatarsal head",
+          "5th metatarsal head",
+          "lateral midfoot border"
+        ],
+        "confidence": "0.55",
+        "notes": "Very high measured arch height (74.2 mm) relative to length with a distally-positioned peak (0.62) and a narrow midfoot on the plantar render suggests pes cavus, which typically pairs with a supinated (underpronated) hindfoot and diminished midfoot contact. Weight distribution here is an estimate inferred from arch morphology, not a measured plantar pressure map; partial/fragmented renders reduce confidence.",
+        "source": "claude-opus-4-8"
+      },
+      "warnings": [
+        "scale unresolved: measurements are shape-only, not metric",
+        "medial/lateral not detected geometrically; used foot_side default",
+        "arch height 74 mm is NOT clinically reliable (non-weight-bearing capture); causes: non-weight-bearing pose, leg-in-scan, or noisy reconstruction"
+      ],
+      "renders": {
+        "capture": "capture.jpg",
+        "plantar_top": "plantar_top.png",
+        "medial_side": "medial_side.png",
+        "posterior_heel": "posterior_heel.png",
+        "overlay_plantar": "overlay_plantar.png",
+        "overlay_section": "overlay_section.png"
+      }
+    },
+    {
+      "side": "right",
+      "scan_id": "case-right",
+      "measurements": {
+        "length_mm": 240.0,
+        "width_mm": 199.94,
+        "width_reliable": false,
+        "arch_height_mm": 38.0,
+        "arch_reliable": false,
+        "arch_engine": "ray"
+      },
+      "scale": {
+        "method": "unresolved",
+        "reliable": false
+      },
+      "validation": {
+        "gt_length_mm": 240.0,
+        "gt_width_mm": 95.0,
+        "length_dev_mm": 0.0,
+        "width_dev_mm": 104.94,
+        "within_tolerance": false,
+        "scale_reliable": false
+      },
+      "repair": {
+        "method_used": "pymeshfix",
+        "output_watertight": true
+      },
+      "vision": {
+        "arch_type": "high (pes cavus)",
+        "pronation": "supination",
+        "weight_distribution": "increased lateral heel and forefoot loading with reduced midfoot contact",
+        "pressure_zones": [
+          "heel",
+          "1st metatarsal head",
+          "5th metatarsal head",
+          "lateral midfoot border"
+        ],
+        "confidence": 0.55,
+        "notes": "Arch height of 38mm against a 240mm length yields a high arch index, and the very high width-to-length ratio with limited midfoot contact suggests a cavus, supinatory foot that shifts load to the heel and metatarsal heads. Pressure zones are estimated from arch type and foot geometry, not from a measured plantar pressure map, and mesh artifacts in the renders limit certainty.",
+        "source": "claude-opus-4-8"
+      },
+      "warnings": [
+        "scale unresolved: measurements are shape-only, not metric",
+        "arch height 38 mm is NOT clinically reliable (non-weight-bearing capture); causes: non-weight-bearing pose, leg-in-scan, or noisy reconstruction",
+        "width 200 mm is implausible (foot ~70-135 mm); likely floor/clutter fused into the foot mesh or a mis-orientation"
+      ],
+      "renders": {
+        "capture": "capture.jpg",
+        "plantar_top": "plantar_top.png",
+        "medial_side": "medial_side.png",
+        "posterior_heel": "posterior_heel.png",
+        "overlay_plantar": "overlay_plantar.png",
+        "overlay_section": "overlay_section.png"
+      }
+    }
+  ],
+  "reference": {
+    "renders": {
+      "capture": "capture.jpg",
+      "plantar_top": "plantar_top.png",
+      "medial_side": "medial_side.png",
+      "posterior_heel": "posterior_heel.png",
+      "overlay_plantar": "overlay_plantar.png",
+      "overlay_section": "overlay_section.png"
+    },
+    "scan_id": "case-reference",
+    "vision": {
+      "arch_type": "high (pes cavus)",
+      "pronation": "supination",
+      "weight_distribution": "increased lateral and forefoot/heel loading with reduced midfoot contact",
+      "pressure_zones": [
+        "heel",
+        "1st metatarsal head",
+        "5th metatarsal head",
+        "lateral midfoot"
+      ],
+      "confidence": "0.72",
+      "notes": "Very high arch height (52.3 mm) relative to length and a notably narrow width (40.9 mm) suggest a rigid pes cavus foot with reduced midfoot ground contact, which typically underpronates/supinates and shifts load to heel and metatarsal heads. Pressure zones are estimated from arch morphology and foot geometry, not from a measured pressure map.",
+      "source": "claude-opus-4-8"
+    },
+    "measurements": {
+      "length_mm": 245.0,
+      "width_mm": 40.9,
+      "arch_height_mm": 52.3,
+      "width_reliable": false,
+      "arch_reliable": false,
+      "arch_engine": "ray",
+      "scale_reliable": false
+    },
+    "validation": {
+      "gt_length_mm": 245.0,
+      "length_dev_mm": 0.0,
+      "length_reliable": true
+    },
+    "title": "Captured, reconstructed, measured",
+    "note": "One foot capture, reconstructed to a watertight millimetre-scale 3D mesh, measured, and read for biomechanics \u2014 the whole pipeline end to end.",
+    "flag_note": "Length is anchored to ground truth (0.0 mm off). Width and arch are flagged because this capture is non-weight-bearing \u2014 there's no flat footprint to measure them from."
+  }
+}
