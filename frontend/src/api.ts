@@ -11,6 +11,10 @@ import type {
 } from "./types";
 
 const BASE = "/api";
+// Where the standardized renders / 3D mesh are served from. In dev this is the
+// FastAPI backend via the "/api" proxy; for a static deploy (Vercel) the Case
+// Study assets are bundled under public/ and served same-origin (VITE_RENDER_BASE="").
+const RENDER_BASE = import.meta.env.VITE_RENDER_BASE ?? "/api";
 
 async function asJson<T>(res: Response): Promise<T> {
   if (!res.ok) {
@@ -74,7 +78,7 @@ export async function resumeReview(
 // Basename of a backend absolute path -> a render URL the browser can load.
 export function renderUrl(scanId: string, absPath: string): string {
   const name = absPath.split(/[\\/]/).pop() ?? absPath;
-  return `${BASE}/scans/${scanId}/renders/${name}`;
+  return `${RENDER_BASE}/scans/${scanId}/renders/${name}`;
 }
 
 export interface StreamHandlers {
