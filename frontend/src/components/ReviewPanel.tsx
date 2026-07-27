@@ -72,7 +72,7 @@ export default function ReviewPanel({ scanId, interrupt, onDecision }: Props) {
           <div className="banner__body">
             <strong>Measurements are shape-only.</strong> No in-frame size
             reference was detected, so absolute millimetre values are not
-            trustworthy — the foot’s <em>proportions</em> are reliable, its
+            trustworthy: the foot’s <em>proportions</em> are reliable, its
             absolute <em>size</em> is not.
             <span className="banner__fix">
               Fix: include an A4 sheet or a bank card flat in frame, or capture
@@ -85,7 +85,7 @@ export default function ReviewPanel({ scanId, interrupt, onDecision }: Props) {
           <div className="banner banner--ok">
             <span className="banner__tag">Scale calibrated</span>
             <div className="banner__body">
-              An in-frame reference was detected — absolute millimetre values are
+              An in-frame reference was detected. Absolute millimetre values are
               trustworthy within tolerance.
             </div>
           </div>

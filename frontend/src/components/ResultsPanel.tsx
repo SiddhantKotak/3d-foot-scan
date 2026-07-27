@@ -60,7 +60,7 @@ export default function ResultsPanel({ scanId, state, onNewScan }: Props) {
           <span className="banner__tag">Shape-only</span>
           <div className="banner__body">
             <strong>Absolute sizes below are uncalibrated.</strong> No in-frame
-            reference was in the capture — add an A4 sheet or bank card in frame,
+            reference was in the capture. Add an A4 sheet or bank card in frame,
             or use LiDAR, before manufacturing.
           </div>
         </div>

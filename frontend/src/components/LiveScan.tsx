@@ -233,8 +233,8 @@ function EmptyState() {
       <h1 className="empty__title">Capture a foot. Read the biomechanics.</h1>
       <p className="empty__body">
         Upload a batch of foot photos, pick the side and posture, and start the
-        scan. Each pipeline stage streams in as it runs — quality gate,
-        reconstruction, measurement, vision read — then pauses for your review
+        scan. Each pipeline stage streams in as it runs: quality gate,
+        reconstruction, measurement, vision read, then pauses for your review
         before the insole spec is written.
       </p>
       <ol className="empty__flow">

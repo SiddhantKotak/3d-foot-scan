@@ -3,7 +3,7 @@
   "capture": "20 handheld non-weight-bearing HEIC photos per foot",
   "ground_truth_source": "A4 hand tracings (weight-bearing)",
   "data_issues": [
-    "Reconstruction captured the whole scene (floor/chair) \u2014 background can fuse into the foot mesh",
+    "Reconstruction captured the whole scene (floor/chair), so background can fuse into the foot mesh",
     "Non-weight-bearing capture: no floor reference, arch height not clinically reliable",
     "Foot + leg in frame complicates orientation",
     "Marginal reconstruction from ~20 handheld photos of low-texture skin",
@@ -170,7 +170,7 @@
       "length_reliable": true
     },
     "title": "Captured, reconstructed, measured",
-    "note": "One foot capture, reconstructed to a watertight millimetre-scale 3D mesh, measured, and read for biomechanics \u2014 the whole pipeline end to end.",
-    "flag_note": "Length is anchored to ground truth (0.0 mm off). Width and arch are flagged because this capture is non-weight-bearing \u2014 there's no flat footprint to measure them from."
+    "note": "One foot capture, reconstructed to a watertight millimetre-scale 3D mesh, measured, and read for biomechanics. The whole pipeline, end to end.",
+    "flag_note": "Length is anchored to ground truth (0.0 mm off). Width and arch are flagged because this capture is non-weight-bearing, so there's no flat footprint to measure them from."
   }
 }

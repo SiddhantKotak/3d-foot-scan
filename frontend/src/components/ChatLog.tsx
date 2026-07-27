@@ -22,7 +22,7 @@ const ACTIVE_TEXT: Record<StageName, string> = {
   quality_gate: "Scoring sharpness, exposure and viewpoint diversity…",
   submit_reconstruction: "Uploading images and queuing photogrammetry…",
   await_reconstruction:
-    "Reconstructing the 3D mesh — this can take several minutes when KIRI is live.",
+    "Reconstructing the 3D mesh. This can take several minutes when KIRI is live.",
   measure: "Cleaning, scaling, aligning and measuring the mesh…",
   vision_read: "Reading arch, pronation and load from the renders…",
   review: "Writing the insole spec…",
@@ -116,7 +116,7 @@ function Summary({
   if (status === "pending")
     return <span className="track__muted">queued</span>;
   if (status === "skipped")
-    return <span className="track__muted">skipped — quality gate blocked run</span>;
+    return <span className="track__muted">skipped: quality gate blocked run</span>;
   if (!data) return null;
 
   switch (stage) {
@@ -126,7 +126,7 @@ function Summary({
       if (!q.ok)
         return (
           <span className="track__fail-text">
-            Blocked — {(q.batch_reasons ?? []).join("; ") || "unusable batch"}
+            Blocked: {(q.batch_reasons ?? []).join("; ") || "unusable batch"}
           </span>
         );
       return (
@@ -193,7 +193,7 @@ function Summary({
       const approved = data.insole_spec?.approved ?? data.review?.approved;
       return (
         <span>
-          Insole spec {approved ? "approved" : "recorded"} — see summary below.
+          Insole spec {approved ? "approved" : "recorded"}. See summary below.
         </span>
       );
     }

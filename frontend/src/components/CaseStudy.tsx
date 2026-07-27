@@ -35,10 +35,10 @@ const STRIP_VIEWS: { key: string; label: string; kind: "render" | "overlay" }[] 
   ];
 
 const num = (n: number | null | undefined, d = 1): string =>
-  n == null ? "—" : Number(n).toFixed(d);
+  n == null ? "-" : Number(n).toFixed(d);
 
 const pct = (c: number | string | undefined): string => {
-  if (c == null) return "—";
+  if (c == null) return "-";
   const n = Number(c);
   return Number.isNaN(n) ? String(c) : `${Math.round(n * 100)}%`;
 };
@@ -133,7 +133,7 @@ export default function CaseStudy() {
         <p className="mast__deck">
           A batch of foot photos becomes a validated set of insole measurements.
           Reconstruction runs on KIRI photogrammetry, geometry is measured in a
-          canonical millimetre frame, and Claude reads the biomechanics — with
+          canonical millimetre frame, and Claude reads the biomechanics, with
           every number checked against ground truth and flagged the moment it
           can't be trusted.
         </p>
@@ -209,7 +209,7 @@ export default function CaseStudy() {
                 >
                   <img
                     src={renderUrl(ref.scan_id, ref.renders[v.key])}
-                    alt={`Foot — ${v.label}`}
+                    alt={`Foot ${v.label}`}
                     loading="lazy"
                   />
                   <span>{v.label}</span>
@@ -343,7 +343,7 @@ function MeasureRow({
   reduced: boolean;
 }) {
   const counted = useCountUp(value ?? 0, run, reduced);
-  const shown = value == null ? "—" : counted.toFixed(1);
+  const shown = value == null ? "-" : counted.toFixed(1);
   return (
     <li
       className="mline"
@@ -402,7 +402,7 @@ function FootPlate({
           >
             <img
               src={heroSrc}
-              alt={`${foot.side} foot — ${heroIsPhoto ? "capture photo" : "plantar render"}`}
+              alt={`${foot.side} foot, ${heroIsPhoto ? "capture photo" : "plantar render"}`}
             />
           </button>
           <figcaption className="plate__caption">
@@ -426,7 +426,7 @@ function FootPlate({
             >
               <img
                 src={renderUrl(foot.scan_id, foot.renders[view.key])}
-                alt={`${foot.side} foot — ${view.label}`}
+                alt={`${foot.side} foot, ${view.label}`}
                 loading="lazy"
               />
             </button>
@@ -446,14 +446,14 @@ function FootPlate({
             <DimLine label="Width" value={m.width_mm} />
             <CalloutTag
               reliable={m.width_reliable}
-              reason="Width flagged — floor/clutter likely fused into the foot mesh, or a mis-orientation inflated it."
+              reason="Width flagged: floor/clutter likely fused into the foot mesh, or a mis-orientation inflated it."
             />
           </div>
           <div className="dimrow">
             <DimLine label="Arch height" value={m.arch_height_mm} />
             <CalloutTag
               reliable={m.arch_reliable}
-              reason="Arch height is not clinically reliable — non-weight-bearing capture with no floor reference."
+              reason="Arch height is not clinically reliable: non-weight-bearing capture with no floor reference."
             />
           </div>
         </div>
@@ -535,7 +535,7 @@ function ReadCell({
   return (
     <div className={`read__cell ${big ? "read__cell--big" : ""}`}>
       <span className="read__label mono">{label}</span>
-      <span className="read__value">{value ?? "—"}</span>
+      <span className="read__value">{value ?? "-"}</span>
     </div>
   );
 }
@@ -544,7 +544,7 @@ function BioCell({ label, value }: { label: string; value?: string }) {
   return (
     <div className="bio__cell">
       <span className="bio__label">{label}</span>
-      <span className="bio__value">{value ?? "—"}</span>
+      <span className="bio__value">{value ?? "-"}</span>
     </div>
   );
 }
